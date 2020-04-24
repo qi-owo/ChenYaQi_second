@@ -1,0 +1,195 @@
+body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, button, input, textarea, th, td { 
+    margin:0; 
+    padding:0; 
+} 
+html,body {
+    height: 100%;
+    width: 100%;
+    font-size: 16px;
+    color: #1a1a1a;
+}
+h1, h2, h3, h4, h5, h6 { 
+    font-size: 100%; font-weight: normal; 
+}
+a {
+    text-decoration:none;
+}
+input {
+    margin: 0;
+    outline: none;
+    padding: 0;
+    border: none;
+}
+img {
+    border: none;
+}
+ul,ol,li {
+    list-style-type: none;
+}
+
+/*通用*/
+body {
+    background: #f6f6f6;
+}
+.w {
+    width: 1000px;
+    margin: 0 auto;
+}
+
+/*公用 */
+.fl {
+    float: left;
+}
+.fr {
+    float: right;
+}
+/*header*/
+header {
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 52px;
+    width: 100%;
+    background-color: #fff;
+    line-height: 52px;
+    overflow: visible;
+    z-index: 999;
+}
+.header-w>a {
+    float: left;
+    margin-left: -15px;
+}
+.header-w>a>i {
+    color: #0084FF;
+    font-size: 40px;
+}
+
+/*header nav*/
+.header-w>ul {
+    float: left;
+    display: flex;
+    margin-left: 10px;
+}
+
+.header-w>ul li a {
+    display: inline-block;
+    height: 50px;
+    color: #8590a6;
+}
+.header-w>ul li {
+    padding: 0 17px;
+    font-size: 15px;
+}
+.header-w>ul li.on:first-child a{
+    color: #000;
+}
+.header-w>ul li.on {
+    font-weight: bold;
+    border-bottom: 3px solid #0084FF;
+}
+
+/*search*/
+.search {
+    position: relative;
+    margin-left: 1rem;
+}
+.search input:first-child {
+    box-sizing: border-box;
+    width: 326px;
+    height: 34px;
+    padding-left: 12px;
+    padding-right: 0;
+    background: #f6f6f6;
+    border: 1px solid #ebebeb;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+}
+.search-icon {
+    position: absolute;
+    right: 100px;
+    top: 0px;
+    cursor: pointer;
+}
+.search-icon i {
+    font-size: 20px;
+    vertical-align: middle;
+}
+.search input:last-child {
+    display: inline-block;
+    padding: 0 16px;
+    margin-left: 10px;
+    font-size: 14px;
+    height: 32px;
+    line-height: 32px;
+    color: #fff;
+    text-align: center;
+    cursor: pointer;
+    background: #0084ff;
+    border: 1px solid #0084ff;
+    border-radius: 3px;
+}
+
+/*user*/
+.user {
+    position: relative;
+}
+.user>div{
+    display: inline-block;
+    width: 50px;
+    height: 40px;
+    line-height: 40px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+.user>div i{
+    font-size: 25px;
+    color: #8590A6;
+}
+.user .user-self {
+    width: 30px;
+}
+.user .user-self img {
+    height: 30px;
+    width: 30px;
+    line-height: 52px;
+    vertical-align: top;
+}
+
+/*用户菜单*/
+.menu {
+    position: absolute;
+    top: 70px;
+    right: -30px;
+    padding: 6px 0;
+    z-index: 9;
+    background-color: #fff;
+    border: 1px solid #ebebeb;
+    border-radius: 4px;
+    box-shadow: 0 5px 20px rgba(26,26,26,.1);
+}
+.menu::before {
+    position: absolute;
+    display: block;
+    content: "";
+    width: 0;
+    height: 0;
+    top: -16px;
+    left: 60%;
+    border: rgba(26,26,26,.0) 8px solid;
+    border-bottom: 8px solid #fff;
+}
+.menu li{
+    height: 38px;
+    line-height: 38px;
+    padding: 0 20px;
+    font-size: 14px;
+    color: #8590a6;
+    cursor: pointer;
+}
+.menu li:hover {
+    background-color: #F6F6F6;
+}

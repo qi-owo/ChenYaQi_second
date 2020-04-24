@@ -1,0 +1,270 @@
+body {
+    height: auto;
+}
+
+/**/
+.container-w {
+    width: 1000px;
+    padding: 0 16px;
+    margin: 14px auto;
+    font-size: 15px;
+    color: #1a1a1a;
+    background-color: #fff;
+}
+
+.card {
+    width: 100%;
+    background: #fff;
+    overflow: hidden; 
+    box-shadow: 0 1px 3px rgba(26,26,26,.1);
+    box-sizing: border-box;
+}
+
+.edit-hd {
+    width: 100%;
+    height: 240px;
+    overflow: hidden;
+    background: #f6f6f6;
+    border-top-right-radius: 1px;
+    border-top-left-radius: 1px;
+}
+
+/*下面正式*/
+.edit-main {
+    position: relative;
+    margin: 0 20px 24px;
+}
+
+/*头像*/
+.user-pic {
+    position: absolute;
+    top: -25px;
+    left: 0;
+    z-index: 1;
+}
+
+.real-pic {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: top;
+    background-color: #fff;
+    border: 4px solid #fff;
+    border-radius: 8px;
+}
+
+.real-pic img {
+    width: 160px;
+    height: 160px;
+}
+
+.user-pic input {
+    display: none;
+}
+
+.mask-pic {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    cursor: pointer;
+}
+
+.mask-pic-1 {
+    z-index: 4;
+    border: 4px solid #fff;
+    border-radius: 8px;
+}
+
+.mask-pic-w {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 5;
+    color: #fff;
+    text-align: center;
+    transform: translate(-50%,-50%);
+}
+
+.mask-pic-w .icon-xiangji{
+    font-size: 30px;
+    color: #ccc;
+}
+
+/*右边表单*/
+.user-content {
+    padding-top: 16px;
+    padding-left: 32px;
+    border-left: 164px solid transparent;
+}
+
+.user-content .Field-content:first-child {
+    padding: 0;
+} 
+
+.content-header {
+    position: relative;
+    padding-right: 106px;
+    margin-bottom: 16px;
+    line-height: 36px;
+}
+
+.content-header h1 {
+    display: inline-block;
+    max-width: 400px;
+    padding-right: 40px;
+    font-size: 26px;
+    font-weight: 600;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.content-header a {
+    position: absolute;
+    top: 8px;
+    right: 0;
+    color: #8590a6;
+    text-align: center;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.Field-name {
+    display: none;
+}
+
+.Field-name .input-wrapper {
+    margin-left: 100px;
+    width: 500px;
+}
+
+.Field-name .button-groups {
+    margin-left: 100px;
+}
+
+#nickname {
+    width: 500px;
+}
+
+.content-edit {
+    padding-bottom: 100px;
+    margin-top: 10px;
+}
+
+.Field {
+    padding: 30px 0;
+    border-bottom: 1px solid #ebebeb;
+}
+
+.Field-label {
+    position: absolute;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 36px;
+    color: #444;
+}
+
+.Field-content {
+    position: relative;
+    padding: 0 64px 0 140px;
+    line-height: 36px;
+}
+
+/* 修改后显示 */
+.Field-content>div {
+    display: none;
+}
+
+.Field-content>div select{
+    display: block;
+    width: 100px;
+    height: 40px;
+    padding: 0 20px;
+    line-height: 40px;
+    color: #8590a6;
+    text-align: left;
+    background: none;
+    border: none;
+}
+
+.button-groups {
+    margin-top: 24px;
+    vertical-align: top;
+}
+
+.button-groups button {
+    color: #fff;
+    background-color: #0084ff;
+    border-color: #0084ff;
+}
+
+.button-groups button:last-child {
+    background-color: #fff;
+    color: #8590a6;
+    border-color: #8590a6;
+}
+
+#resume{
+    box-sizing: border-box;
+    width: 540px;
+    padding: 4px 10px;
+    font-size: 14px;
+    line-height: 26px;
+    background: #f6f6f6;
+    border: 1px solid #ebebeb;
+    border-radius: 3px;
+    outline: #ccc;
+    transition: background .2s;
+    resize: none;
+}
+
+/* 公共button */
+.Button {
+    display: inline-block;
+    padding: 0 16px;
+    font-size: 14px;
+    line-height: 32px;
+    color: #8590a6;
+    text-align: center;
+    cursor: pointer;
+    background: none;
+    border: 1px solid;
+    border-radius: 3px;
+}
+
+.modify {
+    display: none;
+    margin-left: 20px;
+    color: #175199;
+    cursor: pointer;
+    vertical-align: top;
+}
+
+.Field-content:hover .m-show {
+    display: inline-block;
+} 
+
+.content-header:hover .m-show {
+    display: inline-block;
+}
+
+/*input*/
+.input-wrapper {
+    box-sizing: border-box;
+    height: 34px;
+    width: 540px;
+    padding: 4px 10px;
+    font-size: 14px;
+    background: #fff;
+    border: 1px solid #ebebeb;
+}
+
+.input-wrapper input {
+    font-size: 14px;
+    color: #1a1a1a;
+    width: 540px;
+    height: 24px;
+    line-height: 24px;
+}
