@@ -8,7 +8,8 @@
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/edit.css">
-    <link rel="stylesheet" href="//at.alicdn.com/t/font_1763704_jr6gr5e8dl.css">
+    <link rel="stylesheet" href="css/notice.css">
+    <link rel="stylesheet" href="fonts/iconfont.css">
 </head>
 <body>
     <div class="container">
@@ -24,11 +25,13 @@
                 </ul>
                 <div class="search fl">
                     <form>
-                        <input type="text" placeholder="搜索">
-                        <div class="search-icon">
-                            <i class="iconfont icon-sousuo"></i>
+                        <div class="indexSearch">
+                            <input type="text" placeholder="搜索" >
+                            <div class="search-icon">
+                                <i class="iconfont icon-sousuo"></i>
+                            </div>
                         </div>
-                        <input type="button" value="提问">
+                        <input type="button" value="提问" class="indexQuestion">
                     </form>
                 </div>
                 <div class="user fr">
@@ -36,7 +39,28 @@
                         <i class="iconfont icon-tongzhi"></i>
                     </div>
                     <div class="user-message fl">
-                        <i class="iconfont icon-xiaoxi"></i>
+                        <i class="iconfont icon-xiaoxi message-btn"></i>
+                        <div class="notice">
+                            <div class="notice-w">
+                                <div class="notice-title">
+                                    我的好友
+                                </div>
+                                <ul class="notice-ul">
+                                    <li class="notice-li">
+                                        <span class="friendImg">
+                                            <img src="images/tx.jpg" alt="">
+                                        </span>
+                                        <div class="friendText">
+                                            <h3 class="message-name">
+                                                x
+                                            </h3>
+                                            <p class="message-text">
+                                            </p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                     <div class="user-self">
                         <img src="images/tx.jpg" alt="">
@@ -62,9 +86,6 @@
         <main>
             <div class="main-w w">
                 <div class="left">
-                    <a href="javascript:;" class="banner-pic">
-                        <img src="images/banner.jpg" alt="">
-                    </a>
                     <div class="article">
                         <div class="article-nav">
                             <ul>
@@ -75,722 +96,150 @@
                         </div>
                         <div class="article-w">
                             <!-- 一个item -->
-                            <div class="article-item">
-                                <div class="feed">
-                                    <!-- 正式开始 -->
-                                    <div class="answer-item">
-                                        <!-- 标题 -->
-                                        <h2 class="a-title">1</h2>
-                                        <!-- 作者信息，展开出现 -->
-                                        <div class="authorInfo authorInfoS">
-                                            <span class="author-pic">
-                                                <img src="images/tx.jpg" alt="">
-                                            </span>
-                                            <div class="author-content ">
-                                                <div class="author-header">
-                                                    <div class="author-nickname">
-                                                        作者名字
-                                                    </div>
-                                                </div>
-                                                <div class="author-detail">
-                                                    <div class="author-introduction">
-                                                        作者介绍
-                                                    </div>
-                                                </div>
-                                            </div>
+                        </div>
+                    </div>
+                </div>
+                <li class="newLi">
+                    <div class="comment-card">
+                        <div class="comment-card1">
+                            <div class="comment-authorImg">
+                                <img src="images/tx.jpg" alt="">
+                            </div>
+                            <div class="comment-authorNickname">name</div>
+                            <div class="comment-date"></div>
+                        </div>
+                        <div class="comment-card2">
+                            <p class="comment-cardText">暂无</p>
+                            <div class="comment-card2-w">
+                                <div class="comment-approve">
+                                    <i class="iconfont icon-dianzan"></i>
+                                </div>
+                                <div class="commentActions">
+                                    <div class="comment-viewReply">
+                                        <i class="iconfont icon-xiaoxi"></i>
+                                        查看回复
+                                    </div>
+                                    <span class="comment-reply">
+                                        <i class="iconfont icon-huifu"></i>
+                                        回复
+                                    </span>
+                                    <span class="comment-disapprove" >
+                                        <i class="iconfont icon-cai"></i>
+                                        踩
+                                    </span>
+                                    <div class="comment-delete">删除</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="reply-footer">
+                        <div class="reply-footer-w">
+                            <div class="reply-edit">
+                                <input type="text" class="reply-edit-w" placeholder="写下你的评论…">
+                            </div>
+                            <span>
+                                <i class="iconfont icon-emoji"></i>
+                            </span>
+                        </div>
+                        <input type="button" value="发布" class="replyBtn">
+                    </div>
+                </li>
+                <div class="article-item">
+                    <div class="feed">
+                        <!-- 正式开始 -->
+                        <div class="answer-item">
+                            <!-- 标题 -->
+                            <h2 class="a-title">…</h2>
+                            <!-- 作者信息，展开出现 -->
+                            <div class="authorInfo authorInfoS">
+                                <span class="author-pic">
+                                    <img src="images/tx.jpg" alt="">
+                                </span>
+                                <div class="author-content ">
+                                    <div class="author-header">
+                                        <div class="author-nickname">
+                                            作者名字
                                         </div>
-                                        <!-- 正式内容 包括功能 -->
-                                        <div class="rich-content">
-                                            <div class="content-inner maxLimit">
-                                                <span class="inner-text">
-                                                </span>
-                                                <button class="text-more">
-                                                    阅读全文
-                                                    <i class="iconfont icon-xiangxia"></i>
-                                                </button>
-                                            </div>
-                                            <!-- 功能区 -->
-                                            <div class="content-actions">
-                                                <span class="approve">
-                                                    <i class="iconfont icon-shang"></i>
-                                                    赞同 0
-                                                </span>
-                                                <span class="disapprove">
-                                                    <i class="iconfont icon-xia"></i>
-                                                    反对
-                                                </span>
-                                                <div class="comment share">
-                                                    <i class="iconfont icon-pinglun"></i>
-                                                    <span class="commentNum">0条评论</span>
-                                                </div>
-                                                <div class="share">
-                                                    <i class="iconfont icon-fenxiang"></i>
-                                                    <span>分享</span>
-                                                </div>
-                                                <div class="share">
-                                                    <i class="iconfont icon-shoucang"></i>
-                                                    <span>收藏</span>
-                                                </div>
-                                                <div class="share">
-                                                    <i class="iconfont icon-xihuan"></i>
-                                                    <span>喜欢</span>
-                                                </div>
-                                                <div class="share">
-                                                    <i class="iconfont icon-weibiaoti533"></i>
-                                                </div>
-                                                <button class="text-less">
-                                                    收起
-                                                    <i class="iconfont icon-xiangshang"></i>
-                                                </button>
-                                            </div>
-                                            <!-- 评论区 -->
-                                            <div class="comment-container">
-                                                <div class="comment-w">
-                                                    <div class="comment-nav">
-                                                        <div class="comment-title fl">
-                                                            <h2 class="commentNum">0条评论</h2>
-                                                        </div>
-                                                        <div class="comment-options fr">
-                                                            <i class="iconfont"></i>
-                                                            切换为时间顺序
-                                                        </div>
-                                                    </div>
-                                                    <div class="comment-list">
-                                                        评论
-                                                    </div>
-                                                    <ul class="nestComment">
-                                                        <!-- 一个评论li -->
-                                                        <li>
-                                                            <div class="comment-card">
-                                                                <div class="comment-card1">
-                                                                    <div class="comment-authorImg">
-                                                                        <img src="images/tx.jpg" alt="">
-                                                                    </div>
-                                                                    <div class="comment-authorNickname">name</div>
-                                                                </div>
-                                                                <div class="comment-card2">
-                                                                    <p comment-cardText>暂无</p>
-                                                                    <div class="comment-approve">
-                                                                        <i class="iconfont icon-dianzan"></i>
-                                                                        点赞
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                    <div class="comment-footer">
-                                                        <div class="comment-footer-w">
-                                                            <div class="comment-edit">
-                                                                <input type="text" class="comment-edit-w" placeholder="写下你的评论…">
-                                                            </div>
-                                                            <span>
-                                                                <i class="iconfont icon-emoji"></i>
-                                                            </span>
-                                                        </div>
-                                                        <input type="button" value="发布" class="commentBtn">
-                                                    </div>
-                                                </div>
-                                            </div>
+                                    </div>
+                                    <div class="author-detail">
+                                        <div class="author-introduction">
+                                            作者介绍
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="article-item">
-                                <div class="feed">
-                                    <!-- 正式开始 -->
-                                    <div class="answer-item">
-                                        <!-- 标题 -->
-                                        <h2 class="a-title">1</h2>
-                                        <!-- 作者信息，展开出现 -->
-                                        <div class="authorInfo authorInfoS">
-                                            <span class="author-pic">
-                                                <img src="images/tx.jpg" alt="">
-                                            </span>
-                                            <div class="author-content ">
-                                                <div class="author-header">
-                                                    <div class="author-nickname">
-                                                        作者名字
-                                                    </div>
-                                                </div>
-                                                <div class="author-detail">
-                                                    <div class="author-introduction">
-                                                        作者介绍
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- 正式内容 包括功能 -->
-                                        <div class="rich-content">
-                                            <div class="content-inner maxLimit">
-                                                <span class="inner-text">
-                                                </span>
-                                                <button class="text-more">
-                                                    阅读全文
-                                                    <i class="iconfont icon-xiangxia"></i>
-                                                </button>
-                                            </div>
-                                            <!-- 功能区 -->
-                                            <div class="content-actions">
-                                                <span class="approve">
-                                                    <i class="iconfont icon-shang"></i>
-                                                    赞同 0
-                                                </span>
-                                                <span class="disapprove">
-                                                    <i class="iconfont icon-xia"></i>
-                                                    反对
-                                                </span>
-                                                <div class="comment share">
-                                                    <i class="iconfont icon-pinglun"></i>
-                                                    <span class="commentNum">0条评论</span>
-                                                </div>
-                                                <div class="share">
-                                                    <i class="iconfont icon-fenxiang"></i>
-                                                    <span>分享</span>
-                                                </div>
-                                                <div class="share">
-                                                    <i class="iconfont icon-shoucang"></i>
-                                                    <span>收藏</span>
-                                                </div>
-                                                <div class="share">
-                                                    <i class="iconfont icon-xihuan"></i>
-                                                    <span>喜欢</span>
-                                                </div>
-                                                <div class="share">
-                                                    <i class="iconfont icon-weibiaoti533"></i>
-                                                </div>
-                                                <button class="text-less">
-                                                    收起
-                                                    <i class="iconfont icon-xiangshang"></i>
-                                                </button>
-                                            </div>
-                                            <!-- 评论区 -->
-                                            <div class="comment-container">
-                                                <div class="comment-w">
-                                                    <div class="comment-nav">
-                                                        <div class="comment-title fl">
-                                                            <h2 class="commentNum">0条评论</h2>
-                                                        </div>
-                                                        <div class="comment-options fr">
-                                                            <i class="iconfont"></i>
-                                                            切换为时间顺序
-                                                        </div>
-                                                    </div>
-                                                    <div class="comment-list">
-                                                        评论
-                                                    </div>
-                                                    <ul class="nestComment">
-                                                        <!-- 一个评论li -->
-                                                        <li>
-                                                            <div class="comment-card">
-                                                                <div class="comment-card1">
-                                                                    <div class="comment-authorImg">
-                                                                        <img src="images/tx.jpg" alt="">
-                                                                    </div>
-                                                                    <div class="comment-authorNickname">name</div>
-                                                                </div>
-                                                                <div class="comment-card2">
-                                                                    <p comment-cardText>暂无</p>
-                                                                    <div class="comment-approve">
-                                                                        <i class="iconfont icon-dianzan"></i>
-                                                                        点赞
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                    <div class="comment-footer">
-                                                        <div class="comment-footer-w">
-                                                            <div class="comment-edit">
-                                                                <input type="text" class="comment-edit-w" placeholder="写下你的评论…">
-                                                            </div>
-                                                            <span>
-                                                                <i class="iconfont icon-emoji"></i>
-                                                            </span>
-                                                        </div>
-                                                        <input type="button" value="发布" class="commentBtn">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                            <!-- 正式内容 包括功能 -->
+                            <div class="rich-content">
+                                <div class="content-inner maxLimit">
+                                    <span class="inner-text">
+                                    </span>
+                                    <button class="text-more">
+                                        阅读全文
+                                        <i class="iconfont icon-xiangxia"></i>
+                                    </button>
+                                    <span class="text-date"></span>
                                 </div>
-                            </div>
-                            <div class="article-item">
-                                <div class="feed">
-                                    <!-- 正式开始 -->
-                                    <div class="answer-item">
-                                        <!-- 标题 -->
-                                        <h2 class="a-title">1</h2>
-                                        <!-- 作者信息，展开出现 -->
-                                        <div class="authorInfo authorInfoS">
-                                            <span class="author-pic">
-                                                <img src="images/tx.jpg" alt="">
-                                            </span>
-                                            <div class="author-content ">
-                                                <div class="author-header">
-                                                    <div class="author-nickname">
-                                                        作者名字
-                                                    </div>
-                                                </div>
-                                                <div class="author-detail">
-                                                    <div class="author-introduction">
-                                                        作者介绍
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- 正式内容 包括功能 -->
-                                        <div class="rich-content">
-                                            <div class="content-inner maxLimit">
-                                                <span class="inner-text">
-                                                </span>
-                                                <button class="text-more">
-                                                    阅读全文
-                                                    <i class="iconfont icon-xiangxia"></i>
-                                                </button>
-                                            </div>
-                                            <!-- 功能区 -->
-                                            <div class="content-actions">
-                                                <span class="approve">
-                                                    <i class="iconfont icon-shang"></i>
-                                                    赞同 0
-                                                </span>
-                                                <span class="disapprove">
-                                                    <i class="iconfont icon-xia"></i>
-                                                    反对
-                                                </span>
-                                                <div class="comment share">
-                                                    <i class="iconfont icon-pinglun"></i>
-                                                    <span class="commentNum">0条评论</span>
-                                                </div>
-                                                <div class="share">
-                                                    <i class="iconfont icon-fenxiang"></i>
-                                                    <span>分享</span>
-                                                </div>
-                                                <div class="share">
-                                                    <i class="iconfont icon-shoucang"></i>
-                                                    <span>收藏</span>
-                                                </div>
-                                                <div class="share">
-                                                    <i class="iconfont icon-xihuan"></i>
-                                                    <span>喜欢</span>
-                                                </div>
-                                                <div class="share">
-                                                    <i class="iconfont icon-weibiaoti533"></i>
-                                                </div>
-                                                <button class="text-less">
-                                                    收起
-                                                    <i class="iconfont icon-xiangshang"></i>
-                                                </button>
-                                            </div>
-                                            <!-- 评论区 -->
-                                            <div class="comment-container">
-                                                <div class="comment-w">
-                                                    <div class="comment-nav">
-                                                        <div class="comment-title fl">
-                                                            <h2 class="commentNum">0条评论</h2>
-                                                        </div>
-                                                        <div class="comment-options fr">
-                                                            <i class="iconfont"></i>
-                                                            切换为时间顺序
-                                                        </div>
-                                                    </div>
-                                                    <div class="comment-list">
-                                                        评论
-                                                    </div>
-                                                    <ul class="nestComment">
-                                                        <!-- 一个评论li -->
-                                                        <li>
-                                                            <div class="comment-card">
-                                                                <div class="comment-card1">
-                                                                    <div class="comment-authorImg">
-                                                                        <img src="images/tx.jpg" alt="">
-                                                                    </div>
-                                                                    <div class="comment-authorNickname">name</div>
-                                                                </div>
-                                                                <div class="comment-card2">
-                                                                    <p comment-cardText>暂无</p>
-                                                                    <div class="comment-approve">
-                                                                        <i class="iconfont icon-dianzan"></i>
-                                                                        点赞
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                    <div class="comment-footer">
-                                                        <div class="comment-footer-w">
-                                                            <div class="comment-edit">
-                                                                <input type="text" class="comment-edit-w" placeholder="写下你的评论…">
-                                                            </div>
-                                                            <span>
-                                                                <i class="iconfont icon-emoji"></i>
-                                                            </span>
-                                                        </div>
-                                                        <input type="button" value="发布" class="commentBtn">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                <!-- 功能区 -->
+                                <div class="content-actions">
+                                    <span class="approve">
+                                        <i class="iconfont icon-shang"></i>
+                                        赞同 0
+                                    </span>
+                                    <span class="disapprove">
+                                        <i class="iconfont icon-xia"></i>
+                                    </span>
+                                    <div class="comment share">
+                                        <i class="iconfont icon-pinglun"></i>
+                                        <span class="commentNum2">0条评论</span>
                                     </div>
+                                    <button class="text-less">
+                                        收起
+                                        <i class="iconfont icon-xiangshang"></i>
+                                    </button>
                                 </div>
-                            </div>
-                            <div class="article-item">
-                                <div class="feed">
-                                    <!-- 正式开始 -->
-                                    <div class="answer-item">
-                                        <!-- 标题 -->
-                                        <h2 class="a-title">1</h2>
-                                        <!-- 作者信息，展开出现 -->
-                                        <div class="authorInfo authorInfoS">
-                                            <span class="author-pic">
-                                                <img src="images/tx.jpg" alt="">
-                                            </span>
-                                            <div class="author-content ">
-                                                <div class="author-header">
-                                                    <div class="author-nickname">
-                                                        作者名字
-                                                    </div>
-                                                </div>
-                                                <div class="author-detail">
-                                                    <div class="author-introduction">
-                                                        作者介绍
-                                                    </div>
-                                                </div>
+                                <!-- 评论区 -->
+                                <div class="comment-container">
+                                    <div class="comment-w">
+                                        <div class="comment-nav">
+                                            <div class="comment-title fl">
+                                                <h2 class="commentNum">0条评论</h2>
+                                            </div>
+                                            <div class="comment-options fr">
+                                                <i class="iconfont"></i>
+                                                时间顺序
                                             </div>
                                         </div>
-                                        <!-- 正式内容 包括功能 -->
-                                        <div class="rich-content">
-                                            <div class="content-inner maxLimit">
-                                                <span class="inner-text">
-                                                </span>
-                                                <button class="text-more">
-                                                    阅读全文
-                                                    <i class="iconfont icon-xiangxia"></i>
-                                                </button>
-                                            </div>
-                                            <!-- 功能区 -->
-                                            <div class="content-actions">
-                                                <span class="approve">
-                                                    <i class="iconfont icon-shang"></i>
-                                                    赞同 0
-                                                </span>
-                                                <span class="disapprove">
-                                                    <i class="iconfont icon-xia"></i>
-                                                    反对
-                                                </span>
-                                                <div class="comment share">
-                                                    <i class="iconfont icon-pinglun"></i>
-                                                    <span class="commentNum">0条评论</span>
-                                                </div>
-                                                <div class="share">
-                                                    <i class="iconfont icon-fenxiang"></i>
-                                                    <span>分享</span>
-                                                </div>
-                                                <div class="share">
-                                                    <i class="iconfont icon-shoucang"></i>
-                                                    <span>收藏</span>
-                                                </div>
-                                                <div class="share">
-                                                    <i class="iconfont icon-xihuan"></i>
-                                                    <span>喜欢</span>
-                                                </div>
-                                                <div class="share">
-                                                    <i class="iconfont icon-weibiaoti533"></i>
-                                                </div>
-                                                <button class="text-less">
-                                                    收起
-                                                    <i class="iconfont icon-xiangshang"></i>
-                                                </button>
-                                            </div>
-                                            <!-- 评论区 -->
-                                            <div class="comment-container">
-                                                <div class="comment-w">
-                                                    <div class="comment-nav">
-                                                        <div class="comment-title fl">
-                                                            <h2 class="commentNum">0条评论</h2>
-                                                        </div>
-                                                        <div class="comment-options fr">
-                                                            <i class="iconfont"></i>
-                                                            切换为时间顺序
-                                                        </div>
-                                                    </div>
-                                                    <div class="comment-list">
-                                                        评论
-                                                    </div>
-                                                    <ul class="nestComment">
-                                                        <!-- 一个评论li -->
-                                                        <li>
-                                                            <div class="comment-card">
-                                                                <div class="comment-card1">
-                                                                    <div class="comment-authorImg">
-                                                                        <img src="images/tx.jpg" alt="">
-                                                                    </div>
-                                                                    <div class="comment-authorNickname">name</div>
-                                                                </div>
-                                                                <div class="comment-card2">
-                                                                    <p comment-cardText>暂无</p>
-                                                                    <div class="comment-approve">
-                                                                        <i class="iconfont icon-dianzan"></i>
-                                                                        点赞
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                    <div class="comment-footer">
-                                                        <div class="comment-footer-w">
-                                                            <div class="comment-edit">
-                                                                <input type="text" class="comment-edit-w" placeholder="写下你的评论…">
-                                                            </div>
-                                                            <span>
-                                                                <i class="iconfont icon-emoji"></i>
-                                                            </span>
-                                                        </div>
-                                                        <input type="button" value="发布" class="commentBtn">
-                                                    </div>
-                                                </div>
+                                        <div class="comment-list">
+                                            评论
+                                        </div>
+                                        <div class="comment-load">
+                                            <div class="load-items">
+                                                <span></span>
+                                                <span></span>
+                                                <span></span>
+                                                <span></span>
+                                                <span></span>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="article-item">
-                                <div class="feed">
-                                    <!-- 正式开始 -->
-                                    <div class="answer-item">
-                                        <!-- 标题 -->
-                                        <h2 class="a-title">1</h2>
-                                        <!-- 作者信息，展开出现 -->
-                                        <div class="authorInfo authorInfoS">
-                                            <span class="author-pic">
-                                                <img src="images/tx.jpg" alt="">
-                                            </span>
-                                            <div class="author-content ">
-                                                <div class="author-header">
-                                                    <div class="author-nickname">
-                                                        作者名字
-                                                    </div>
-                                                </div>
-                                                <div class="author-detail">
-                                                    <div class="author-introduction">
-                                                        作者介绍
-                                                    </div>
-                                                </div>
-                                            </div>
+                                        <div class="comment-ul-box">
+                                            <ul class="nestComment">
+                                                <!-- 一个评论li -->
+                                            </ul>
                                         </div>
-                                        <!-- 正式内容 包括功能 -->
-                                        <div class="rich-content">
-                                            <div class="content-inner maxLimit">
-                                                <span class="inner-text">
-                                                </span>
-                                                <button class="text-more">
-                                                    阅读全文
-                                                    <i class="iconfont icon-xiangxia"></i>
-                                                </button>
-                                            </div>
-                                            <!-- 功能区 -->
-                                            <div class="content-actions">
-                                                <span class="approve">
-                                                    <i class="iconfont icon-shang"></i>
-                                                    赞同 0
-                                                </span>
-                                                <span class="disapprove">
-                                                    <i class="iconfont icon-xia"></i>
-                                                    反对
-                                                </span>
-                                                <div class="comment share">
-                                                    <i class="iconfont icon-pinglun"></i>
-                                                    <span class="commentNum">0条评论</span>
-                                                </div>
-                                                <div class="share">
-                                                    <i class="iconfont icon-fenxiang"></i>
-                                                    <span>分享</span>
-                                                </div>
-                                                <div class="share">
-                                                    <i class="iconfont icon-shoucang"></i>
-                                                    <span>收藏</span>
-                                                </div>
-                                                <div class="share">
-                                                    <i class="iconfont icon-xihuan"></i>
-                                                    <span>喜欢</span>
-                                                </div>
-                                                <div class="share">
-                                                    <i class="iconfont icon-weibiaoti533"></i>
-                                                </div>
-                                                <button class="text-less">
-                                                    收起
-                                                    <i class="iconfont icon-xiangshang"></i>
-                                                </button>
-                                            </div>
-                                            <!-- 评论区 -->
-                                            <div class="comment-container">
-                                                <div class="comment-w">
-                                                    <div class="comment-nav">
-                                                        <div class="comment-title fl">
-                                                            <h2 class="commentNum">0条评论</h2>
-                                                        </div>
-                                                        <div class="comment-options fr">
-                                                            <i class="iconfont"></i>
-                                                            切换为时间顺序
-                                                        </div>
-                                                    </div>
-                                                    <div class="comment-list">
-                                                        评论
-                                                    </div>
-                                                    <ul class="nestComment">
-                                                        <!-- 一个评论li -->
-                                                        <li>
-                                                            <div class="comment-card">
-                                                                <div class="comment-card1">
-                                                                    <div class="comment-authorImg">
-                                                                        <img src="images/tx.jpg" alt="">
-                                                                    </div>
-                                                                    <div class="comment-authorNickname">name</div>
-                                                                </div>
-                                                                <div class="comment-card2">
-                                                                    <p comment-cardText>暂无</p>
-                                                                    <div class="comment-approve">
-                                                                        <i class="iconfont icon-dianzan"></i>
-                                                                        点赞
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                    <div class="comment-footer">
-                                                        <div class="comment-footer-w">
-                                                            <div class="comment-edit">
-                                                                <input type="text" class="comment-edit-w" placeholder="写下你的评论…">
-                                                            </div>
-                                                            <span>
-                                                                <i class="iconfont icon-emoji"></i>
-                                                            </span>
-                                                        </div>
-                                                        <input type="button" value="发布" class="commentBtn">
-                                                    </div>
-                                                </div>
-                                            </div>
+                                        <div class="comment-page">
+                                            <span class="page-cut active">1</span>
+                                            <span class="page-cut">2</span>
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="article-item">
-                                <div class="feed">
-                                    <!-- 正式开始 -->
-                                    <div class="answer-item">
-                                        <!-- 标题 -->
-                                        <h2 class="a-title">1</h2>
-                                        <!-- 作者信息，展开出现 -->
-                                        <div class="authorInfo authorInfoS">
-                                            <span class="author-pic">
-                                                <img src="images/tx.jpg" alt="">
-                                            </span>
-                                            <div class="author-content ">
-                                                <div class="author-header">
-                                                    <div class="author-nickname">
-                                                        作者名字
-                                                    </div>
+                                        <div class="comment-footer">
+                                            <div class="comment-footer-w">
+                                                <div class="comment-edit">
+                                                    <input type="text" class="comment-edit-w" placeholder="写下你的评论…">
                                                 </div>
-                                                <div class="author-detail">
-                                                    <div class="author-introduction">
-                                                        作者介绍
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- 正式内容 包括功能 -->
-                                        <div class="rich-content">
-                                            <div class="content-inner maxLimit">
-                                                <span class="inner-text">
+                                                <span>
+                                                    <i class="iconfont icon-emoji"></i>
                                                 </span>
-                                                <button class="text-more">
-                                                    阅读全文
-                                                    <i class="iconfont icon-xiangxia"></i>
-                                                </button>
                                             </div>
-                                            <!-- 功能区 -->
-                                            <div class="content-actions">
-                                                <span class="approve">
-                                                    <i class="iconfont icon-shang"></i>
-                                                    赞同 0
-                                                </span>
-                                                <span class="disapprove">
-                                                    <i class="iconfont icon-xia"></i>
-                                                    反对
-                                                </span>
-                                                <div class="comment share">
-                                                    <i class="iconfont icon-pinglun"></i>
-                                                    <span class="commentNum">0条评论</span>
-                                                </div>
-                                                <div class="share">
-                                                    <i class="iconfont icon-fenxiang"></i>
-                                                    <span>分享</span>
-                                                </div>
-                                                <div class="share">
-                                                    <i class="iconfont icon-shoucang"></i>
-                                                    <span>收藏</span>
-                                                </div>
-                                                <div class="share">
-                                                    <i class="iconfont icon-xihuan"></i>
-                                                    <span>喜欢</span>
-                                                </div>
-                                                <div class="share">
-                                                    <i class="iconfont icon-weibiaoti533"></i>
-                                                </div>
-                                                <button class="text-less">
-                                                    收起
-                                                    <i class="iconfont icon-xiangshang"></i>
-                                                </button>
-                                            </div>
-                                            <!-- 评论区 -->
-                                            <div class="comment-container">
-                                                <div class="comment-w">
-                                                    <div class="comment-nav">
-                                                        <div class="comment-title fl">
-                                                            <h2 class="commentNum">0条评论</h2>
-                                                        </div>
-                                                        <div class="comment-options fr">
-                                                            <i class="iconfont"></i>
-                                                            切换为时间顺序
-                                                        </div>
-                                                    </div>
-                                                    <div class="comment-list">
-                                                        评论
-                                                    </div>
-                                                    <ul class="nestComment">
-                                                        <!-- 一个评论li -->
-                                                        <li>
-                                                            <div class="comment-card">
-                                                                <div class="comment-card1">
-                                                                    <div class="comment-authorImg">
-                                                                        <img src="images/tx.jpg" alt="">
-                                                                    </div>
-                                                                    <div class="comment-authorNickname">name</div>
-                                                                </div>
-                                                                <div class="comment-card2">
-                                                                    <p comment-cardText>暂无</p>
-                                                                    <div class="comment-approve">
-                                                                        <i class="iconfont icon-dianzan"></i>
-                                                                        点赞
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                    <div class="comment-footer">
-                                                        <div class="comment-footer-w">
-                                                            <div class="comment-edit">
-                                                                <input type="text" class="comment-edit-w" placeholder="写下你的评论…">
-                                                            </div>
-                                                            <span>
-                                                                <i class="iconfont icon-emoji"></i>
-                                                            </span>
-                                                        </div>
-                                                        <input type="button" value="发布" class="commentBtn">
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            <input type="button" value="发布" class="commentBtn">
                                         </div>
                                     </div>
                                 </div>
@@ -799,140 +248,191 @@
                     </div>
                 </div>
                 <div class="right">
-                    <div class="features">
-                        <ul class="features-nav">
-                            <li>
-                                <i class="iconfont icon-shiyongwendang"></i>
-                                <span>回答问题</span>
-                            </li>
-                            <li>
-                                <i class="iconfont icon-shexiangji"></i>
-                                <span>回答问题</span>
-                            </li>
-                            <li>
-                                <i class="iconfont icon-tianxie"></i>
-                                <span>发视频</span>
-                            </li>
-                            <li>
-                                <i class="iconfont icon-shenjing"></i>
-                                <span>写想法</span>
-                            </li>
-                        </ul>
-                        <div class="features-btm">
-                            <div class="f-btm-l">稍后答</div>
-                            <div class="f-btm-r">草稿箱</div>
-                        </div>
-                    </div>
-                    <div class="creation">
-                        <div class="creation-w">
-                            <div class="creation-l fl">
-                                <i class="iconfont icon-renjijiaohu"></i>
-                                <span>创作者中心</span>
-                            </div>
-                            <div class="creation-r fr">
-                                <span>去开通</span>
-                                <i class="iconfont icon-xiangyou"></i>
+                    <div class="right-w">
+                        <div class="features">
+                            <ul class="features-nav">
+                                <li>
+                                    <i class="iconfont icon-shiyongwendang"></i>
+                                    <span>回答问题</span>
+                                </li>
+                                <li>
+                                    <i class="iconfont icon-shexiangji"></i>
+                                    <span>回答问题</span>
+                                </li>
+                                <li>
+                                    <i class="iconfont icon-tianxie"></i>
+                                    <span>发视频</span>
+                                </li>
+                                <li>
+                                    <i class="iconfont icon-shenjing"></i>
+                                    <span>写想法</span>
+                                </li>
+                            </ul>
+                            <div class="features-btm">
+                                <div class="f-btm-l">稍后答</div>
+                                <div class="f-btm-r">草稿箱</div>
                             </div>
                         </div>
-                    </div>
-                    <div class="category">
-                        <a href="##">
-                            <img src="images/banner_r.png" alt="">
-                        </a>
-                        <ul class="category-nav">
-                            <li>
-                                <i class="iconfont icon-icon-"></i>
-                                <p>Live</p>
-                            </li>
-                            <li>
-                                <i class="iconfont icon-shu"></i>
-                                <p>书店</p>
-                            </li>
-                            <li>
-                                <i class="iconfont icon-V"></i>
-                                <p>圆桌</p>
-                            </li>
-                            <li>
-                                <i class="iconfont icon-huabanbeifen"></i>
-                                <p>专栏</p>
-                            </li>
-                            <li>
-                                <i class="iconfont icon-fufei"></i>
-                                <p>咨询付费</p>
-                            </li>
-                            <li>
-                                <i class="iconfont icon-anonymous-iconfont"></i>
-                                <p>百科</p>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="card">
-                        <div class="card-w">
-                            <ul>
+                        <div class="creation">
+                            <div class="creation-w">
+                                <div class="creation-l fl">
+                                    <i class="iconfont icon-renjijiaohu"></i>
+                                    <span>创作者中心</span>
+                                </div>
+                                <div class="creation-r fr">
+                                    <span>去开通</span>
+                                    <i class="iconfont icon-xiangyou"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="category">
+                            <ul class="category-nav">
                                 <li>
-                                    <a href="javascript:;">
-                                        <i class="iconfont icon-shoucang"></i>
-                                        <span>我的收藏</span>
-                                    </a>
+                                    <i class="iconfont icon-icon-"></i>
+                                    <p>Live</p>
                                 </li>
                                 <li>
-                                    <a href="javascript:;">
-                                        <i class="iconfont icon-wenti"></i>
-                                        <span>我关注的问题</span>
-                                    </a>
+                                    <i class="iconfont icon-shu"></i>
+                                    <p>书店</p>
                                 </li>
                                 <li>
-                                    <a href="javascript:;">
-                                        <i class="iconfont icon-yaoqing"></i>
-                                        <span>我的邀请</span>
-                                    </a>
+                                    <i class="iconfont icon-V"></i>
+                                    <p>圆桌</p>
                                 </li>
                                 <li>
-                                    <a href="javascript:;">
-                                        <i class="iconfont icon-fufei"></i>
-                                        <span>我的余额</span>
-                                    </a>
+                                    <i class="iconfont icon-huabanbeifen"></i>
+                                    <p>专栏</p>
                                 </li>
                                 <li>
-                                    <a href="javascript:;">
-                                        <i class="iconfont icon-zhongxin"></i>
-                                        <span>站务中心</span>
-                                    </a>
+                                    <i class="iconfont icon-fufei"></i>
+                                    <p>咨询付费</p>
                                 </li>
                                 <li>
-                                    <a href="javascript:;">
-                                        <i class="iconfont icon-kefu"></i>
-                                        <span>帮助中心</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="javascript:;">
-                                    <i class="iconfont icon-banquan"></i>
-                                    <span>版权服务中心</span>
-                                    </a>
+                                    <i class="iconfont icon-anonymous-iconfont"></i>
+                                    <p>百科</p>
                                 </li>
                             </ul>
                         </div>
+                        <div class="card">
+                            <div class="card-w">
+                                <ul>
+                                    <li>
+                                        <a href="javascript:;">
+                                            <i class="iconfont icon-shoucang"></i>
+                                            <span>我的收藏</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:;">
+                                            <i class="iconfont icon-wenti"></i>
+                                            <span>我关注的问题</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:;">
+                                            <i class="iconfont icon-yaoqing"></i>
+                                            <span>我的邀请</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:;">
+                                            <i class="iconfont icon-fufei"></i>
+                                            <span>我的余额</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:;">
+                                            <i class="iconfont icon-zhongxin"></i>
+                                            <span>站务中心</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:;">
+                                            <i class="iconfont icon-kefu"></i>
+                                            <span>帮助中心</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:;">
+                                        <i class="iconfont icon-banquan"></i>
+                                        <span>版权服务中心</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="footer">
+                            <a href="##">知乎指南</a><span>·</span>
+                            <a href="##">知乎协议</a><span>·</span>
+                            <a href="##">知乎隐私保护指引</a><br>
+                            <a href="##">应用</a><span>·</span>
+                            <a href="##">工作</a><span>·</span>
+                            <a href="##">申请开通知乎机构号</a><br>
+                            <a href="##">侵权举报</a><span>·</span>
+                            <a href="##">网上有害信息举报专区</a><br>
+                            <a href="##">京 ICP 证 110745 号</a><br>
+                            <a href="##">京 ICP 备 13052560 号 - 1</a><br>
+                            <a href="##">京公网安备11010802010035号</a><br>
+                            <span>互联网药品信息服务资格证书</span><br>
+                            <span>（京）- 非经营性 - 2017 - 0067</span><br>
+                            <span>违法和不良信息举报：010-82716601</span><br>
+                            <a href="##">儿童色情信息举报专区</a><br>
+                            <a href="##">证照中心</a><br>
+                            <a href="##">联系我们</a><span> © 2020知乎</span>
+                        </div>
                     </div>
-                    <div class="footer">
-                        <a href="##">刘看山</a><span>·</span>
-                        <a href="##">知乎指南</a><span>·</span>
-                        <a href="##">知乎协议</a><span>·</span>
-                        <a href="##">知乎隐私保护指引</a><br>
-                        <a href="##">应用</a><span>·</span>
-                        <a href="##">工作</a><span>·</span>
-                        <a href="##">申请开通知乎机构号</a><br>
-                        <a href="##">侵权举报</a><span>·</span>
-                        <a href="##">网上有害信息举报专区</a><br>
-                        <a href="##">京 ICP 证 110745 号</a><br>
-                        <a href="##">京 ICP 备 13052560 号 - 1</a><br>
-                        <a href="##">京公网安备11010802010035号</a><br>
-                        <span>互联网药品信息服务资格证书</span><br>
-                        <span>（京）- 非经营性 - 2017 - 0067</span><br>
-                        <span>违法和不良信息举报：010-82716601</span><br>
-                        <a href="##">儿童色情信息举报专区</a><br>
-                        <a href="##">证照中心</a><br>
-                        <a href="##">联系我们</a><span> © 2020知乎</span>
+                </div>
+                <div class="reply">
+                    <div class="reply-w">
+                        <div class="reply-nav">
+                            <div class="reply-title fl">
+                                <h2 class="replyList">查看对话</h2>
+                            </div>
+                        </div>
+                        <div class="replyNum">
+                            0条回复
+                        </div>
+                        <ul class="reply-ul">
+                        </ul>
+                        <div class="replyClose">
+                            <i class="iconfont icon-huifu"></i>
+                        </div>
+                        <li class="reply-li">
+                            <div class="reply-card">
+                                <div class="reply-card1">
+                                    <div class="reply-authorImg">
+                                        <img src="images/tx.jpg" alt="">
+                                    </div>
+                                    <div class="reply-authorNickname"></div>
+                                    <div class="reply-date"></div>
+                                </div>
+                                <div class="reply-card2">
+                                    <p class="reply-cardText">暂无</p>
+                                    <div class="reply-card2-w">
+                                        <div class="reply-approve">
+                                            <i class="iconfont icon-dianzan"></i>
+                                        </div>
+                                        <div class="replyActions">
+                                            <span class="reply-disapprove" >
+                                                <i class="iconfont icon-cai"></i>
+                                                踩
+                                            </span>
+                                            <div class="reply-delete">删除</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="sidebar">
+                <div class="goTop">
+                    <i class="iconfont icon-huidingbu"></i>
+                    <div class="sideTop">
+                        回到顶部
                     </div>
                 </div>
             </div>
@@ -969,7 +469,6 @@
                             <i class="iconfont icon-huabanbeifen"></i>
                             修改
                         </span>
-                        <a href="##">返回我的主页 > </a>
                         <div class="Field-name">
                             <div>
                                 <h3 class="Field-label">用户名</h3>
@@ -1074,6 +573,20 @@
                     </div>
                 </div>
             </div>
+            <div class="preview">
+                <div class="preview-w">
+                    <h2>头像预览</h2>
+                    <div class="previewBox">
+                        
+                    </div>
+                    <div class="confirmAvatar">
+                        保存
+                    </div>
+                    <div class="previewBack">
+                        <i class="iconfont icon-huifu"></i>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -1083,53 +596,17 @@
             <div class="login-content">
                 <div class="form">
                     <div class="login-nav">
-                        <span class="active">免密码登录</span>
                         <span>密码登录</span>
                     </div>
-                    
-                    <div class="un-password">
-                        <div class="phone row">
-                            <div class="phone-l">
-                                <select name="number" id="number">
-                                    <option value="zg" selected>中国 +86</option>
-                                    <option value="mg">美国 +1</option>
-                                    <option value="rb">日本 +81</option>
-                                    <option value="rb">中国香港 +852</option>
-                                    <option value="rb">中国澳门 +853</option>
-                                    <option value="rb">中国台湾 +886</option>
-                                    <option value="rb">马来西亚 +60</option>
-                                    <option value="rb">澳大利亚 +61</option>
-                                </select>
-                            </div>
-                            <span></span>
-                            <div class="phone-r fr">
-                                <input type="text" placeholder="手机号">
-                            </div>
-                        </div>
-                        <div class="verification row">
-                            <input type="text" name="" id="">
-                            <button class="fr">获取短信验证码</button>
-                        </div>
-                        <div class="more row">
-                            <button class="fr">接收语音验证码</button>
-                        </div>
-                        <button class="submit">注册/登录</button>
-                    </div>
-
                     <div class="password">
                         <div class="username row">
-                            <input id="userId" type="text" placeholder="手机号或邮箱">
+                            <input id="userId" type="text" placeholder="用户名">
                         </div>
                         <div class="row">
                             <input id="user-word" type="password" placeholder="密码">
                         </div>
+                        <div class="input-test"></div>
                         <button class="submit" id="user-login">登录</button>
-                    </div>
-
-                    <div class="protocol">
-                        <p>
-                            未注册手机验证后自动登录，注册即代表同意<a href="##">《知乎协议》</a><a href="##">《隐私保护指引》</a>
-                        </p>
                     </div>
 
                 </div>
@@ -1164,29 +641,12 @@
             </div>
             
         </div>
-        <div class="login-btm">
-            <a href="##">知乎专栏</a><span>·</span>
-            <a href="##">圆桌</a><span>·</span>
-            <a href="##">发现</a><span>·</span>
-            <a href="##">移动应用</a><span>·</span>
-            <a href="##">联系我们</a><span>·</span>
-            <a href="##">来知乎工作</a><span>·</span>
-            <a href="##">注册机构号</a><br>
-            <span>© 2020 知乎</span>
-            <a href="##">京 ICP 证 110745 号</a><span>·</span>
-            <a href="##">京 ICP 备 13052560 号 - 1</a><span>·</span>
-            <a href="##">京公网安备</a><span>·</span>
-            <a href="##">11010802010035 号</a><span>·</span>
-            <a href="##">出版物经营许可证</a><br>
-            <a href="##">侵权举报</a><span>·</span>
-            <a href="##">网上有害信息举报专区</a><span>·</span>
-            <a href="##">儿童色情信息举报专区</a><span>·</span>
-            <a href="##"> 违法和不良信息举报： 010-82716601</a>
-        </div>
     </div>
     <script src="js/axios.min.js"></script>
+    <script src="js/load.js"></script>
     <script src="js/login.js"></script>
     <script src="js/edit.js"></script>
-    <script src="js/test.js"></script>
+    <script src="js/scroll.js"></script>
+    <script src="js/notice.js"></script>
 </body>
 </html>

@@ -1,36 +1,22 @@
-//获取
-var withPhone = document.querySelector('.un-password');
-var withId = document.querySelector('.password');
-var loginNav = document.querySelectorAll('.login-nav span');
-
-//切换状态
-loginNav[0].addEventListener('click',function(){
-    loginNav[0].classList.add('active');
-    loginNav[1].classList.remove('active');
-    withPhone.style.display = 'block';
-    withId.style.display = 'none';
-})
-    
-loginNav[1].addEventListener('click',function(){
-    loginNav[1].classList.add('active');
-    loginNav[0].classList.remove('active');
-    withId.style.display = 'block';
-    withPhone.style.display = 'none';
-})
-
 //获取用户名和密码,ID
 var login = document.querySelector('#user-login');
-var name,word;
+var userName = document.querySelector('#userId');
+var userWord = document.querySelector('#user-word');
+
+axios.defaults.withCredentials=true; //cookie
 
 //登陆检测
 var flag,id;
-function stateTest(){
-    axios.get('http://47.97.204.234:3000/user/state')
+function stateTestLogin(){
+    axios.get('http://47.97.204.234:3000/user/state',{
+        widthCredentials: true
+    })
     .then(function(res){
-        console.log(res);
-        flag = res.data.result;
-        if(flag === 'success') {
+        console.log(res.data);
+        flag = res.data.message;
+        if(flag === '目前处于登录状态') {
             id = res.data.userId;
+            stateTest(); //目的获取id
             showPage();
         }
     })
@@ -41,37 +27,69 @@ function stateTest(){
 
 //如果页面登陆就不用再登录了
 window.onload = function(){
-    stateTest();
+    stateTestLogin();
 }
 
-axios.defaults.withCredentials=true; //cookie
-//登录
+var password = document.querySelector('.password');
+var inputTest = document.getElementsByClassName('input-test')[0];
+
+password.addEventListener('click',function(e) {
+    var e = e || window.event;
+    var target = e.target;
+    if(target.id == 'userId' || target.id == 'user-word') {
+        inputTestNow(target);
+    }
+})
+
+//登录检测表单
+var name, word;
+function inputTestNow(obj) {
+    name = document.querySelector('#userId').value;
+    word = document.querySelector('#user-word').value;
+    obj.onblur = function() {
+        if(obj.value == '') {
+            inputTest.style.display = 'block';
+            inputTest.innerHTML = '用户名或密码不能为空！'
+        }else{
+            inputTest.style.display = 'none';
+        }
+    }
+}
+
 login.addEventListener('click', function(){
     name = document.querySelector('#userId').value;
     word = document.querySelector('#user-word').value;
     if(name == "" || name == null) {
-        alert("用户名为空");
         return;
     }else if(word == "" || word == null){
-        alert("密码为空");
         return;
     }else{
-        loginNow();    
+        console.log(123);
+        loginNow();
     }
-
 })
+
 function loginNow(){
     axios.post('http://47.97.204.234:3000/user/login',{
         username: name+'',
         password: word+''
     },{
-        widthCredentials: true //cookie
+        widthCredentials: true
     })
     .then(function(res){
         console.log(res);
-        if(res.data.message === '此账号已经登录'||res.data.result === 'success') {
-            stateTest();
-            showPage();
+        if(res.data.message === '此账号已经登录'||res.data.message === '登录成功') {
+            window.localStorage.setItem('account',name);
+            window.localStorage.setItem('password',word);
+            // stateTest();
+            // showPage();
+            stateTestLogin();
+        }else if (res.data.message === '密码错误') {
+            inputTest.style.display = 'block';
+            inputTest.innerHTML = '密码错误';
+        }else if (res.data.message === '该账号不存在') {
+            inputTest.style.display = 'block';
+            inputTest.innerHTML = '该账号不存在';
         }
     })
     .catch(function(error){
@@ -83,16 +101,24 @@ function loginNow(){
 var logoutBtn = document.querySelector('.icon-tuichu1').parentElement;
 logoutBtn.addEventListener('click',function(){
     logOut();
-    hiddenPage();
 })
 
 function logOut(){
+    let account = window.localStorage.getItem('account');
+    let password = window.localStorage.getItem('password');
     axios.post('http://47.97.204.234:3000/user/logout',{
-        username: name+'',
-        password: word+''
+        username: account,
+        password: password
+    },{
+        widthCredentials: true
     })
     .then(function(res){
-        console.log(res);
+        hiddenPage();
+        console.log(res.data);
+        if(res.data.message == '退出登录成功') {
+            location.reload();
+            storage.clear();//删除
+        }
     })
     .catch(function(error){
         console.log(error);
@@ -105,8 +131,21 @@ function showPage() {
     document.querySelector('.container').style.display = 'block';
     document.querySelector('main').style.display = 'flex';
     document.querySelector('.login').style.display = 'none';
-    //初始化加载5个
-    getArticle(id,0,5);
+    getArticle(id,0,18);
+    (function avatar(){
+        axios.get('http://47.97.204.234:3000/user/getInfo',{
+        params: {
+            userId: id
+        }
+        })
+        .then(function(res){
+            var obj = res.data.info.avatar;
+            document.querySelector('.user-self').innerHTML = `<img src="${obj}" alt="">`
+        })
+        .catch(function(error){
+            console.log(error);
+        })
+    })();
 }
 //隐藏主页
 function hiddenPage() {
@@ -114,4 +153,3 @@ function hiddenPage() {
     document.querySelector('.container').style.display = 'none';
     document.querySelector('.login').style.display = 'block';
 }
-

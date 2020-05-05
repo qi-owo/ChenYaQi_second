@@ -2,23 +2,11 @@
 var editBtn = document.querySelector('.menu').firstElementChild;
 var index = document.querySelector('.index');
 
-//检测登录事件得到id
-function getInfo(){
-    axios.get('http://47.97.204.234:3000/user/state')
-    .then(function(res){
-        let id = res.data.userId;
-        console.log(id);
-    })
-    .catch(function(error){
-        console.log(error);
-})
-}
-
 //点击编辑事件
 editBtn.addEventListener('click',function () {
     editNow();
 })
-index.addEventListener('click',function(){
+index.addEventListener('click',function () {
     editHidden();
 })
 
@@ -34,11 +22,12 @@ function editHidden () {
     document.querySelector('.container-2').style.display = 'none';
     document.querySelector('main').style.display = 'flex';
     index.parentElement.classList.add('on');
+    // NumAll();
 }
 
 //得到info
 var userData;
-function getInfo(){
+function getInfo () {
     axios.get('http://47.97.204.234:3000/user/getInfo',{
         params: {
             userId: id
@@ -54,20 +43,20 @@ function getInfo(){
     })
     .catch(function(error){
         console.log(error);
-})
+    })
 }
 
 //获取数据并加载到页面
 var modify = document.querySelectorAll('.modify');
 var box = document.querySelectorAll('.field-info');
 
-function pullInfo(obj) {
-    console.log(obj);
+function pullInfo (obj) {
+    userImg.innerHTML = `<img src="${obj.avatar}" alt="">`
     var i = 0;
     for(let key in obj) {
-        // if(i == 0) {
-        //     document.querySelector('.real-pic').innerHTML = `<img src="${obj[key]}" alt="">`
-        // }
+        if(i == 0) {
+            document.querySelector('.real-pic').innerHTML = `<img src="${obj[key]}" alt="">`
+        }
         if(i == 1) {
             box[i-1].innerHTML = obj[key] + '';
         }
@@ -82,14 +71,13 @@ function pullInfo(obj) {
     }
 }
 
-
 //修改用户信息
-var dir,content;
-function alterInfo(){
+var dir,contentPlus;
+function alterInfo () {
     axios.post('http://47.97.204.234:3000/user/alterInfo',{
         userId: id,
         direction: dir,
-        content: content
+        content: contentPlus
     })
     .then(function(res){
         var message = res.data.message;
@@ -111,6 +99,15 @@ for( let i = 0; i < modify.length; i++) {
     modify[i].addEventListener('click',function () {
 
         num = i;
+
+        switch(i) {
+            case 0:
+                document.getElementById('nickname').value = box[i].innerHTML;
+            case 2:
+                document.getElementById('introduction').value = box[i].innerHTML;
+            case 4:
+            document.getElementById('resume').value = box[i].innerHTML;
+        }
 
         box[i].style.display = 'none';
         this.classList.remove('m-show');
@@ -139,29 +136,29 @@ for(var i = 0; i < saveBtn.length; i++) {
         
         switch(dir) {
             case 0:
-                content = document.querySelector('#nickname').value;
+                contentPlus = document.querySelector('#nickname').value;
                 alterInfo();
                 break;
             case 1:
                 var obj = document.getElementsByName('gender'); 
                 for(var i = 0; i < obj.length; i++) {
                     if(obj[i].checked) {
-                        content = obj[i].value;
+                        contentPlus = obj[i].value;
                     }
                 }
                 alterInfo();
                 break;
             case 2:
-                content = document.querySelector('#introduction').value;
+                contentPlus = document.querySelector('#introduction').value;
                 alterInfo();
                 break;
             case 3:
                 var index = document.querySelector('#trade').selectedIndex;
-                content = document.querySelector('#trade').options[index].value;
+                contentPlus = document.querySelector('#trade').options[index].value;
                 alterInfo();
                 break;
             case 4:
-                content = document.querySelector('#resume').value;
+                contentPlus = document.querySelector('#resume').value;
                 alterInfo();
                 break;
         }
@@ -169,7 +166,7 @@ for(var i = 0; i < saveBtn.length; i++) {
 }
 
 //修改后刷新
-function refreshData(obj) {
+function refreshData (obj) {
     getInfo();
     switch (obj) {
         case "修改昵称成功":
@@ -191,7 +188,7 @@ function refreshData(obj) {
 }
 
 //恢复原来状态（退出编辑状态）的函数
-function reData(obj) {
+function reData (obj) {
     box[obj].style.display = 'inline-block';
     modify[obj].classList.add('m-show');
     if( obj > 0 ) {
@@ -202,5 +199,73 @@ function reData(obj) {
 }
 
 
-        
+//简化代码
+var $ = document.getElementsByClassName.bind(document);
+
+//修改头像
+var tx = document.getElementById('tx');
+
+//
+var userImg = $('user-self')[0];
+function alterAvatar(formData, config) {
+    axios.post('http://47.97.204.234:3000/user/alterAvatar',formData,config,{
+        widthCredentials: true
+    })
+    .then(function(res){
+        console.log(res);
+        alert('修改成功！')
+        preview.style.display = 'none';
+        getInfo();
+    })
+    .catch(function(error){
+        console.log(error);
+        alert('修改失败！');
+    })
+}
+
+
+tx.onchange = function () {
+    //创建空表单对象
+    var formData = new FormData();
+    //将二进制文件追加到表单对象中
+    formData.append('img', this.files[0]);
+    let config = {
+        headers:{'Content-Type':'multipart/form-data'}
+    }
+    var url = window.URL.createObjectURL(this.files[0]);
+    previewImg(url,formData, config);
+}
+
+//预览
+var preview = $('preview')[0];
+var previewBox = $('previewBox')[0];
+var previewBack = $('previewBack')[0];
+function previewImg (obj, formData, config) {
+    preview.style.display = 'block';
+    previewBox.innerHTML = `<img src="${obj}" alt="">`
+    let confirmAvatar = $('confirmAvatar')[0];
+    confirmAvatar.addEventListener('click',function(){
+        alterAvatar(formData, config);
+    }) 
+}
+
+//关闭
+previewBack.addEventListener('click',function(){
+    preview.style.display = 'none';
+})
+preview.addEventListener('click',function(){
+    this.style.display = 'none';
+})
+
+//阻止事件冒泡
+var previewW= $('preview-w')[0];
+previewW.addEventListener('click',function(e){
+    e = e || window.event;
+    e= e || window.event;
+    if(e.cancelBubble)
+        e.cancelBubble = true;
+    else
+        e.stopPropagation();
+})
+
 

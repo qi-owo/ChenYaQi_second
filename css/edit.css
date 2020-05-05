@@ -37,6 +37,8 @@ body {
 
 /*头像*/
 .user-pic {
+    width: 170px;
+    height: 170px;
     position: absolute;
     top: -25px;
     left: 0;
@@ -44,6 +46,9 @@ body {
 }
 
 .real-pic {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
     display: inline-block;
     overflow: hidden;
     vertical-align: top;
@@ -55,6 +60,7 @@ body {
 .real-pic img {
     width: 160px;
     height: 160px;
+    border-radius: 8px;
 }
 
 .user-pic input {
@@ -62,34 +68,39 @@ body {
 }
 
 .mask-pic {
+    font-size: 15px;
     position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
+    top: 5px;
+    right: 5px;
+    bottom: 5px;
+    left: 5px;
     z-index: 1;
     cursor: pointer;
+    background-color: rgba(26,26,26,.3);
+    border-radius: 8px;
 }
 
 .mask-pic-1 {
     z-index: 4;
-    border: 4px solid #fff;
     border-radius: 8px;
 }
 
 .mask-pic-w {
     position: absolute;
+    width: 90%;
     top: 50%;
     left: 50%;
     z-index: 5;
     color: #fff;
     text-align: center;
+    font-weight: 500;
     transform: translate(-50%,-50%);
 }
 
 .mask-pic-w .icon-xiangji{
+    display: inline-block;
+    margin-bottom: 5px;
     font-size: 30px;
-    color: #ccc;
 }
 
 /*右边表单*/
@@ -113,7 +124,6 @@ body {
 .content-header h1 {
     display: inline-block;
     max-width: 400px;
-    padding-right: 40px;
     font-size: 26px;
     font-weight: 600;
     overflow: hidden;
@@ -267,4 +277,72 @@ body {
     width: 540px;
     height: 24px;
     line-height: 24px;
+}
+
+/* 预览 */
+.preview {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(26,26,26,.5);
+    z-index: 999;
+}
+
+.preview-w {
+    position: relative;
+    width: 400px;
+    height: 65vh;
+    margin: 10vh auto;
+    min-height: 200px;
+    text-align: center;
+    background-color: #fff;
+    overflow-y: auto;
+}
+
+.preview-w h2 {
+    font-size: 20px;
+    line-height: 3;
+    font-weight: 600;
+    border-bottom: 1px solid rgb(240, 240, 240);
+}
+
+.previewBox {
+    width: 200px;
+    height: 200px;
+    margin: 20px auto;
+    background-color: #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.previewBox img {
+    width: 100%;
+    height: 100%;
+}
+
+.confirmAvatar {
+    font-size: 16px;
+    color: #fff;
+    width: 100px;
+    height: 35px;
+    line-height: 35px;
+    margin: 20px auto;
+    background-color: #0084ff;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.previewBack {
+    color: #ccc;
+    position: absolute;
+    top: 20px;
+    right: 10px;
+    cursor: pointer;
+}
+
+.previewBack i {
+    font-size: 20px;
 }
