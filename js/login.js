@@ -4,15 +4,15 @@ var userName = document.querySelector('#userId');
 var userWord = document.querySelector('#user-word');
 
 axios.defaults.withCredentials=true; //cookie
+axios.defaults.baseURL = 'http://47.97.204.234:3000/';
 
 //登陆检测
 var flag,id;
 function stateTestLogin(){
-    axios.get('http://47.97.204.234:3000/user/state',{
+    axios.get('user/state',{
         widthCredentials: true
     })
     .then(function(res){
-        console.log(res.data);
         flag = res.data.message;
         if(flag === '目前处于登录状态') {
             id = res.data.userId;
@@ -20,9 +20,6 @@ function stateTestLogin(){
             showPage();
         }
     })
-    .catch(function(error){
-        console.log(error);
-})
 }
 
 //如果页面登陆就不用再登录了
@@ -64,36 +61,41 @@ login.addEventListener('click', function(){
     }else if(word == "" || word == null){
         return;
     }else{
-        console.log(123);
         loginNow();
     }
 })
 
 function loginNow(){
-    axios.post('http://47.97.204.234:3000/user/login',{
+    axios.post('user/login',{
         username: name+'',
         password: word+''
     },{
         widthCredentials: true
     })
     .then(function(res){
-        console.log(res);
-        if(res.data.message === '此账号已经登录'||res.data.message === '登录成功') {
+        if(res.data.message === '登录成功') {
             window.localStorage.setItem('account',name);
             window.localStorage.setItem('password',word);
-            // stateTest();
-            // showPage();
             stateTestLogin();
         }else if (res.data.message === '密码错误') {
             inputTest.style.display = 'block';
-            inputTest.innerHTML = '密码错误';
+            inputTest.innerHTML = '密码错误!';
         }else if (res.data.message === '该账号不存在') {
             inputTest.style.display = 'block';
-            inputTest.innerHTML = '该账号不存在';
+            inputTest.innerHTML = '该账号不存在!';
+        }else if(res.data.message === '此账号已经登录') {
+            // window.localStorage.setItem('account',name);
+            // window.localStorage.setItem('password',word);
+            axios.post('user/logout',{
+                username: name,
+                password: word
+            })
+            .then(function(res){
+                if(res.data.message == '退出登录成功') {
+                    loginNow(); //再登录
+                }
+            })
         }
-    })
-    .catch(function(error){
-        console.log(error);
     })
 }
 
@@ -106,7 +108,7 @@ logoutBtn.addEventListener('click',function(){
 function logOut(){
     let account = window.localStorage.getItem('account');
     let password = window.localStorage.getItem('password');
-    axios.post('http://47.97.204.234:3000/user/logout',{
+    axios.post('user/logout',{
         username: account,
         password: password
     },{
@@ -114,14 +116,10 @@ function logOut(){
     })
     .then(function(res){
         hiddenPage();
-        console.log(res.data);
         if(res.data.message == '退出登录成功') {
             location.reload();
             storage.clear();//删除
         }
-    })
-    .catch(function(error){
-        console.log(error);
     })
 }
 
@@ -132,18 +130,18 @@ function showPage() {
     document.querySelector('main').style.display = 'flex';
     document.querySelector('.login').style.display = 'none';
     getArticle(id,0,18);
+    friendList(id);
+    getMessageAuto(id);
     (function avatar(){
-        axios.get('http://47.97.204.234:3000/user/getInfo',{
+        axios.get('user/getInfo',{
         params: {
             userId: id
         }
         })
         .then(function(res){
-            var obj = res.data.info.avatar;
-            document.querySelector('.user-self').innerHTML = `<img src="${obj}" alt="">`
-        })
-        .catch(function(error){
-            console.log(error);
+            var avatar = res.data.info.avatar;
+            window.localStorage.setItem('avatar',avatar);
+            document.querySelector('.user-self').innerHTML = `<img src="${avatar}" alt="">`
         })
     })();
 }

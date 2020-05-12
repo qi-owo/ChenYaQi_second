@@ -44,9 +44,20 @@
 }
 
 .notice-ul li {
+    position: relative;
     height: 44px;
     display: flex;
     padding: 15px;
+}
+
+.notice-ul li.new::after{
+    display: block;
+    content: "new";
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    font-size: 12px;
+    color: red;
 }
 
 .notice-ul li:hover {
@@ -71,4 +82,146 @@
     color: #8590a6;
     text-overflow: ellipsis;
     white-space: nowrap;
+}
+
+/*聊天框*/
+.chat {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(26,26,26,.5);
+    z-index: 999;
+}
+
+.chat-w {
+    position: relative;
+    width: 700px;
+    height: 520px;
+    margin: 50px auto;
+    text-align: center;
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.chat-title {
+    font-size: 15px;
+    font-weight: 600;
+    padding: 3px;
+    border-bottom: 1px solid #ebebeb;
+}
+
+.chat-area {
+    height: 300px;
+    overflow-y: auto;
+}
+
+.chat-time {
+    padding-top: 15px;
+    text-align: center;
+    font-size: 12px;
+    line-height: 20px;
+    color: #999;
+}
+
+.chat-box-l {
+    padding: 20px;
+    display: flex;
+}
+
+.chat-box-r {
+    padding: 20px;
+    display: flex;
+    justify-content: flex-end;;
+}
+
+.chat-img {
+    box-sizing: border-box;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.chat-img img {
+    width: 40px;
+    height: 40px;
+}
+
+.chat-text {
+    background-color: #f6f6f6;
+    max-width: 388px;
+    border-radius: 8px;
+    padding: 10px;
+    font-size: 14px;
+    line-height: 20px;
+    margin-left: 8px;
+    min-height: 20px;
+    text-align: left;
+    box-sizing: border-box;
+    white-space: pre-wrap;
+    word-break: break-all;
+}
+
+.chat-box-r .chat-text{
+    margin: 0 8px 0 0;
+}
+
+.chat-btm {
+    position: relative;
+    box-sizing: border-box;
+    border-top: 1px solid #ebebeb;
+    height: 160px;
+    width: 100%;
+    padding: 20px;
+}
+
+.chat-edit {
+    padding: 0;
+    width: 100%;
+    font-size: 14px;
+    line-height: 24px;
+    overflow: hidden;
+    border: none;
+    outline: none;
+    resize: none;
+    white-space: pre-wrap;
+}
+
+.chat-send {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    width: 80px;
+    height: 35px;
+    color: #fff;
+    background-color: #0077e6;
+    opacity: .8;
+    border-radius: 8px;
+    text-align: center;
+    line-height: 35px;
+    cursor: pointer;
+}
+
+.chat-send:hover {
+    opacity: 1;
+}
+
+.chat-close {
+    position: absolute;
+    top: 5px;
+    right: 20px;
+    color: #444;
+    cursor: pointer;
+}
+
+.chat-close i {
+    font-size: 22px;
+}
+
+.chat-close:hover {
+    color: #1a1a1a;
 }

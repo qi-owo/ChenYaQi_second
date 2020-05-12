@@ -1,4 +1,5 @@
 //获取
+axios.defaults.baseURL = 'http://47.97.204.234:3000/';
 var editBtn = document.querySelector('.menu').firstElementChild;
 var index = document.querySelector('.index');
 
@@ -11,10 +12,12 @@ index.addEventListener('click',function () {
 })
 
 //编辑出现
+var menu = $('menu')[0];
 function editNow () {
     document.querySelector('.container-2').style.display = 'block';
     document.querySelector('main').style.display = 'none';
     index.parentElement.classList.remove('on');
+    menu.style.display = 'none';
     getInfo();
 }
 //编辑消失
@@ -28,21 +31,15 @@ function editHidden () {
 //得到info
 var userData;
 function getInfo () {
-    axios.get('http://47.97.204.234:3000/user/getInfo',{
+    axios.get('user/getInfo',{
         params: {
             userId: id
         }
     })
     .then(function(res){
-        
         userData = res.data.info;
-
-        console.log(userData);
-
         pullInfo(userData);
-    })
-    .catch(function(error){
-        console.log(error);
+        window.localStorage.setItem('avatar',res.data.info.avatar);
     })
 }
 
@@ -74,7 +71,7 @@ function pullInfo (obj) {
 //修改用户信息
 var dir,contentPlus;
 function alterInfo () {
-    axios.post('http://47.97.204.234:3000/user/alterInfo',{
+    axios.post('user/alterInfo',{
         userId: id,
         direction: dir,
         content: contentPlus
@@ -83,9 +80,6 @@ function alterInfo () {
         var message = res.data.message;
         refreshData(message);
     })
-    .catch(function(error){
-        console.log(error);
-})
 }
 
 //点击修改
@@ -208,17 +202,15 @@ var tx = document.getElementById('tx');
 //
 var userImg = $('user-self')[0];
 function alterAvatar(formData, config) {
-    axios.post('http://47.97.204.234:3000/user/alterAvatar',formData,config,{
+    axios.post('user/alterAvatar',formData,config,{
         widthCredentials: true
     })
     .then(function(res){
-        console.log(res);
         alert('修改成功！')
         preview.style.display = 'none';
         getInfo();
     })
     .catch(function(error){
-        console.log(error);
         alert('修改失败！');
     })
 }

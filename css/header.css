@@ -169,6 +169,16 @@ header {
 .user-message {
     position: relative;
 }
+.notice-dot {
+    position: absolute;
+    display: none;
+    top: 5px;
+    right: 25px;
+    height: 7px;
+    width: 7px;
+    background-color: red;
+    border-radius: 50%;
+}
 .user .user-self {
     width: 30px;
 }

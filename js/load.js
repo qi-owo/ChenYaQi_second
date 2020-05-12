@@ -8,25 +8,31 @@ var start = 0;
 var stop = 18;
 var Box = $('article-item');
 
+axios.defaults.baseURL = 'http://47.97.204.234:3000/'; //调试环境
+
+//一个过滤验证函数
+function  filter(text) {
+    var reg = /<[^<>]+>/g;//1、全局匹配g肯定忘记写,2、<>标签中不能包含标签实现过滤HTML标签
+    text = text.replace(reg, '');//替换HTML标签
+    text = text.replace(/&nbsp;/ig, '');//替换HTML空格
+    return text;
+}
+
 //检测登录状态,用来记录ID的，调用发生在login
 function stateTest(){
-    axios.get('http://47.97.204.234:3000/user/state',{
+    axios.get('user/state',{
         widthCredentials: true
     })
     .then(function(res){
-        console.log(res.data);
         if(res.data.message === '目前处于登录状态') {
             userId = res.data.userId; //记录id
         }
-    })
-    .catch(function(error){
-        console.log(error);
     })
 }
 
 //获取文章
 function getArticle(userId,start,stop) {
-    axios.get('http://47.97.204.234:3000/article/getArticles',{
+    axios.get('article/getArticles',{
         params: {
             userId: userId,
             start: start,
@@ -34,7 +40,6 @@ function getArticle(userId,start,stop) {
         }
     })
     .then(function(res){
-        console.log(res);
         article = res.data.articles;
         if(Box.length < article.length) {
             for(let i = Box.length; i <= article.length; i++) {
@@ -46,60 +51,48 @@ function getArticle(userId,start,stop) {
         loadArticles(article);
         loadActions(article, 0);
     })
-    .catch(function(error){
-        console.log(error);
-    })
 }
 
 //点赞文章或者取消点赞
 function likeArticle (userId, articleId, like, index) {
-    axios.post('http://47.97.204.234:3000/article/likeArticle',{
+    axios.post('article/likeArticle',{
         userId: userId,
         articleId: articleId,
         like: like
     })
     .then(function(res){
-        console.log(res.data);
         if(res.data.message == '点赞成功' || res.data.message == '取消点赞成功') {
             getArticle(userId, start, stop);
             loadActions(article[index],index);
         }
     })
-    .catch(function(error){
-        console.log(error);
-    })
 }
 
 //点踩文章或者取消点踩
 function dislikeArticle (userId, articleId, dislike, index) {
-    axios.post('http://47.97.204.234:3000/article/dislikeArticle',{
+    axios.post('article/dislikeArticle',{
         userId: userId,
         articleId: articleId,
         dislike: dislike
     })
     .then(function(res){
-        console.log(res.data);
         if(res.data.message == '点踩成功' || res.data.message == '取消点踩成功') {
             getArticle(userId, start, stop);
             loadActions(article[index],index);
         }
     })
-    .catch(function(error){
-        console.log(error);
-})
 }
 
 //获取评论
 var dataIndex = []; //dataIndex[num]是第num篇文章的评论数据
 function getComments (userId, articleId, index) {
-    axios.get('http://47.97.204.234:3000/article/getComments',{
+    axios.get('article/getComments',{
         params: {
             userId: userId,
             articleId: articleId
         }
     })
     .then(function(res){
-        console.log(res.data.comments);
         dataIndex[index] = res.data.comments;
         if(res.data.message == '请求成功' || res.data.message == '该文章没有评论') {
             loadComments(res.data.comments,index);
@@ -111,27 +104,23 @@ function getComments (userId, articleId, index) {
 
 //post评论
 function commentNow (userId, articleId, content, index) {
-    axios.post('http://47.97.204.234:3000/article/comment',{
+    axios.post('article/comment',{
         userId: userId,
         articleId: articleId,
         content: content
     })
     .then(function(res) {
-        console.log(res.data);
         if(res.data.message == '评论成功') {
             alert('评论成功！')
             getComments(userId, articleId, index);
             commentPut[index].value = '';
         }
     })
-    .catch(function(error) {
-        console.log(error);
-    })
 }
 
 //删除评论
 function deleteComment (userId, commentId, obj, articleId, index) {
-    axios.delete('http://47.97.204.234:3000/article/deleteComment',{
+    axios.delete('article/deleteComment',{
         data: {
             userId: userId,
             commentId: commentId
@@ -141,14 +130,11 @@ function deleteComment (userId, commentId, obj, articleId, index) {
         obj.remove();
         getComments(userId, articleId, index);
     })
-    .catch(function(error){
-        console.log(error);
-    })
 }
 
 //点赞评论或者取消点赞
 function likeComment (userId, commentId, like, index) {
-    axios.post('http://47.97.204.234:3000/article/likeComment',{
+    axios.post('article/likeComment',{
         userId: userId,
         commentId: commentId,
         like: like
@@ -163,7 +149,7 @@ function likeComment (userId, commentId, like, index) {
 
 //点踩评论或者取消点踩
 function dislikeComment (userId, commentId, dislike, index) {
-    axios.post('http://47.97.204.234:3000/article/dislikeComment',{
+    axios.post('article/dislikeComment',{
         userId: userId,
         commentId: commentId,
         dislike: dislike
@@ -178,14 +164,13 @@ function dislikeComment (userId, commentId, dislike, index) {
 
 //获取评论回复
 function getReplies(userId, commentId, index, num) {
-    axios.get('http://47.97.204.234:3000/article/getReplies',{
+    axios.get('article/getReplies',{
         params: {
             userId: userId,
             commentId: commentId
         }
     })
     .then(function(res) {
-        console.log(res.data);
         let replies = res.data.replies
         if(res.data.message === '请求成功') {
             loadReplies(replies, index, commentId, num);
@@ -198,25 +183,21 @@ function getReplies(userId, commentId, index, num) {
 
 //删除回复,obj是删除的对象
 function deleteReply (userId, replyId, obj, commentId, index, num) {
-    axios.delete('http://47.97.204.234:3000/article/deleteReply',{
+    axios.delete('article/deleteReply',{
         data: {
             userId: userId,
             replyId: replyId
         }
     })
     .then(function(res){
-        console.log(res.data);
         obj.remove();
         getReplies(userId, commentId, index, num)
-    })
-    .catch(function(error){
-        console.log(error);
     })
 }
 
 //点赞回复或者取消点赞
 function likeReply(userId, replyId, like, index, commentId) {
-    axios.post('http://47.97.204.234:3000/article/likeReply',{
+    axios.post('article/likeReply',{
         userId: userId,
         replyId: replyId,
         like: like
@@ -230,7 +211,7 @@ function likeReply(userId, replyId, like, index, commentId) {
 
 //点踩回复或者取消点踩
 function dislikeReply(userId, replyId, dislike, index, commentId) {
-    axios.post('http://47.97.204.234:3000/article/dislikeReply',{
+    axios.post('article/dislikeReply',{
         userId: userId,
         replyId: replyId,
         dislike: dislike
@@ -244,13 +225,12 @@ function dislikeReply(userId, replyId, dislike, index, commentId) {
 
 //回复某条评论
 function replyNow(userId, commentId, content, index, num) {
-    axios.post('http://47.97.204.234:3000/article/reply',{
+    axios.post('article/reply',{
         userId: userId,
         commentId: commentId,
         content: content
     })
     .then(function(res){
-        console.log(res);
         if(res.data.message == '回复成功') {
             alert('回复成功！')
             replyPut[num].value = '';
@@ -320,10 +300,12 @@ function loadActions(obj, index) {
 }
 
 //点击获取更多事件
-//点击收起事件
+//点击收起
 var load = $('comment-load');
 var commentFooterPlus = $('comment-footer');
 var loadFlag = [];
+var scrollHeightComment = new Array(20);
+var scrollHeightArticle = new Array(20);
 articleW.addEventListener('click',function(e) {
     //兼容处理
     var e = e || window.event;
@@ -358,7 +340,7 @@ articleW.addEventListener('click',function(e) {
         if(commentFlag == 'none' || commentFlag == '') {
             commentContainer[index].style.display = 'block';
             commentNum2[index].innerHTML = '收起评论';
-            scrollHeight = getScrollTop();
+            scrollHeightComment[index] = getScrollTop();
             //判断是否需要加载动画
             if(loadFlag[index] == false) {
                 getComments(userId, article[index].articleId, index);
@@ -367,16 +349,16 @@ articleW.addEventListener('click',function(e) {
                 load[index].style.display = 'block';
                 setTimeout(function(){
                     getComments(userId, article[index].articleId, index);
-                },1000)
+                },800)
                 loadFlag[index] = false;
             }
         }else if(commentFlag == 'block'){
             commentContainer[index].style.display = 'none';
-            window.scrollTo(0, scrollHeight);
+            window.scrollTo(0, scrollHeightComment[index]);
             if(dataIndex[index] == undefined) {
                 commentNum2[index].innerHTML = `0条评论`;
             }else{
-                commentNum2[index].innerHTML = `${dataIndex[index].length}条评论`
+                commentNum2[index].innerHTML = `${dataIndex[index].length}条评论`;
             }
         }
     }
@@ -402,9 +384,8 @@ var textLess = $('text-less');
 var textMore = $('text-more');
 var contentActions = $('content-actions'); //底部actions
 var textDate = $('text-date');
-var scrollHeight;
 function expandText(arr, index, target) {
-    scrollHeight = getScrollTop();
+    scrollHeightArticle[index] = getScrollTop();
     //去除高度限制
     content[index].classList.remove('maxLimit');
     //加载作者信息
@@ -453,7 +434,7 @@ function lessText(arr, index, target) {
     //时间隐藏
     textDate[index].style.display = 'none';
     //回到原处
-    window.scrollTo(0, scrollHeight);
+    window.scrollTo(0, scrollHeightArticle[index]);
 }
 
 //点赞
@@ -477,9 +458,10 @@ var commentBox = $('comment-ul-box');
 var nestComment = $('nestComment');
 var commentNum = $('commentNum');
 var commentPage = $('comment-page');
+var commentLess = $('comment-less');
 var commentAuthorNickname, commentText, commentImg, 
     commentDate, commentPut, commentBtn, commentLi,
-    commentViewReply, commentApprove,commentDisapprove, commentReply;
+    commentViewReply, commentApprove, commentDisapprove, commentReply;
 
 function loadComments(data, index) { //data是评论数据,index表示第几篇文章
     init(nestComment[index]);
@@ -491,7 +473,6 @@ function loadComments(data, index) { //data是评论数据,index表示第几篇�
     init(nestComment[index]);
     //如果没有评论，就此止步
     if(dataIndex[index] == undefined) return;
-    //如果评论数大于6，就要分页
     if(commentText.length < dataIndex[index].length) {
         //少几个加几个（坑！）
         for(let i = commentText.length; i < data.length; i++) {
@@ -500,6 +481,26 @@ function loadComments(data, index) { //data是评论数据,index表示第几篇�
             nestComment[index].appendChild(newLi);
         }
     }
+    //出现收起回复的悬浮按钮
+    if(dataIndex[index].length > 6) {
+        window.addEventListener('scroll',function() {
+            let nest = nestComment[index].getBoundingClientRect();
+            if(nest.top < 200) {
+                commentLess[index].style.display = 'block';
+            }
+            if(nest.top >= 200){
+                commentLess[index].style.display = 'none';
+            }
+            if(nest.bottom - 150 <= document.documentElement.clientHeight) {
+                commentLess[index].style.display = 'none';
+            }
+        })
+    }
+    commentLess[index].addEventListener('click',function(){
+        window.scrollTo(0, scrollHeightComment[index]);
+        commentContainer[index].style.display = 'none';
+        commentNum2[index].innerHTML = `${dataIndex[index].length}条评论`
+    })
     //分页按钮
     // if(dataIndex[index].length > 4) {
     //     commentPage[index].style.display = 'flex';
@@ -567,9 +568,9 @@ function initIndex(obj) {
 function loadCommentsLi(data) {
     for(let i = 0; i < data.length; i++) {
         commentAuthorNickname[i].innerHTML = `${data[i].nickname}`;
-        commentText[i].innerHTML = `${data[i].content}`;
+        commentText[i].innerText = `${data[i].content}`;
         commentImg[i].innerHTML = `<img src="${data[i].avatar}" alt="">`;
-        commentDate[i].innerHTML = `${data[i].time.substring(0,10)}`
+        commentDate[i].innerHTML = `${getTime(data[i].time)}`
         commentLi[i].setAttribute('data-userId',data[i].userId); //评论的li
         commentLi[i].setAttribute('data-commentId',data[i].commentId);
         if(data[i].replied) {
@@ -625,9 +626,9 @@ function postComment(index, target) {
 //判断评论 增加删除事件
 function judgeComment(data, index) {
     for(let i = 0; i < data.length; i++) {
-        let id = commentLi[i].getAttribute('data-userId');
-        let authorId = Box[index].getAttribute('data-userId');
         commentLi[i].addEventListener('mouseenter',function(){
+            let id = commentLi[i].getAttribute('data-userId');
+            let authorId = Box[index].getAttribute('data-userId');
             //判断，如果文章作者的id和当前用户id一样，就可以删除评论
             if(id === userId || authorId === userId) {
                 let commentId = commentLi[i].getAttribute('data-commentId');
@@ -636,6 +637,9 @@ function judgeComment(data, index) {
                 commentDeleteBtn[i].onclick = function() {
                     deleteComment(userId, commentId, commentLi[i], article[index].articleId, index);
                 }
+                commentLi[i].addEventListener('mouseleave',function(){
+                        commentDeleteBtn[i].style.display = 'none';
+                })
             }
         })
     }
@@ -716,8 +720,8 @@ function loadReplies(arr, index, commentId, num) {
         replyLi[i].setAttribute('data-replyId',arr[i].replyId);
         replyAuthorImg[i].innerHTML = `<img src="${arr[i].avatar}" alt="">`;
         replyAuthorNickname[i].innerHTML = `${arr[i].nickname}`;
-        replyDate[i].innerHTML = `${arr[i].time.substring(0,10)}`;
-        replyCardText[i].innerHTML = `${arr[i].content}`;
+        replyDate[i].innerHTML = `${getTime(arr[i].time)}`;
+        replyCardText[i].innerText = `${arr[i].content}`;
         replyApprove[i].style.color = arr[i].liked ? '#0084ff' : '#8590a6';
         if(arr[i].likeNum > 0) {
             replyApprove[i].innerHTML = `<i class="iconfont icon-dianzan"></i> ${arr[i].likeNum}`;
@@ -754,12 +758,14 @@ function judgeReply(data, index, commentId, num) {
             //判断，如果文章作者的id和当前用户id一样，就可以删除评论
             if(id === userId || authorId === userId) {
                 let replyId = replyLi[i].getAttribute('data-replyId');
-                console.log('replyId: ', replyId);
                 let replyDeleteBtn = reply.querySelectorAll('.reply-delete');
                 replyDeleteBtn[i].style.display = 'inline-block';
                 replyDeleteBtn[i].onclick = function() {
                     deleteReply(userId, replyId, replyLi[i], commentId, index, num);
                 }
+                replyLi[i].addEventListener('mouseleave',function(){
+                    replyDeleteBtn[i].style.display = 'none';
+                })
             }
         })
     }
@@ -807,9 +813,7 @@ function replyEdit(userId, commentId, index, num) {
         checkEmpty(str,replyBtn[num]);
     }
     replyBtn[num].onclick = function() {
-        console.log(1);
         let opacity = replyBtn[num].style.opacity;
-        console.log('opacity: ', opacity);
         if(opacity == '1') {
             let content = replyPut[num].value;
             replyNow(userId, commentId, content, index, num);
@@ -829,36 +833,25 @@ function getScrollTop() {
     return scrollTop;
 }
 
-// 如果下拉到最后，没有数据就加载新的
-// window.addEventListener('scroll',function(){
-//     //变量scrollHeight是滚动条的总高度
-//     let scrollHeight = Math.ceil(document.documentElement.scrollHeight || document.body.scrollHeight);
-//     //变量windowHeight是可视区的高度
-//     let windowHeight = Math.ceil(document.documentElement.clientHeight || document.body.clientHeight);
-//     //scrollTop就是触发滚轮事件时滚轮的高度
-//     let scrollTop = Math.ceil(document.documentElement.scrollTop || document.body.scrollTop);
-    
-//     if(scrollTop + windowHeight >= scrollHeight - 10) {
-//         if (start == 0) {
-//             start = 10;
-//         }
-//         if(start == 10) {
-//             loadingMoreItem();
-//         }
-//     }
-// })
-
-//加载更多
-
-// function loadingMoreItem() {
-//     stop = 18;
-
-//     getArticle(userId,start,stop);
-
-//     for(let i = 0; i < stop-start+1; i++) {
-//         var node = Box[0].cloneNode(true);
-//         articleW.appendChild(node);
-//     }
-
-//     start++;
-// }
+// 时间转换
+function getTime(obj) {
+    var now;
+    var date= new Date(Date.parse(obj.replace(/-/g,  "/").replace(/T/g, ' ').replace(/Z/g, ' ').substring(0,19)));
+    now = date;
+    var year = now.getFullYear(); //得到年份
+    var month = now.getMonth();//得到月份
+    var date = now.getDate();//得到日期
+    var day = now.getDay();//得到周几
+    var hour = now.getHours() + 8;//得到小时
+    var min = now.getMinutes();//得到分钟
+    var sec = now.getSeconds();//得到秒
+    month = month + 1;
+    if (month < 10) month = "0" + month;
+    if (date < 10) date = "0" + date;
+    if (hour < 10) hour = "0" + hour;
+    if (min < 10) min = "0" + min;
+    if (sec < 10) sec = "0" + sec;
+    var time = "";
+    time = month + "-" + date+ " " + hour + ":" + min;
+    return time;
+}
